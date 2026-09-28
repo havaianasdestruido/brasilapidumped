@@ -1,0 +1,9 @@
+__pycache__/
+*.py[cod]
+.venv/
+.cache/
+*.sqlite3
+*.sqlite3-*
+*.tmp
+# Large local runs stay outside Git; explicitly export a bounded snapshot to output/.
+dumps/
