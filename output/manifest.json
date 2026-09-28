@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "run_id": "2026-09-28T12:42:07.413313+00:00",
+  "collector_sha256": "be465dfce51158e8fd5f94e20f60f06264874160b7ad907f1f9e95dd774763d9",
+  "python_version": "3.11.2",
+  "started_at": "2026-09-28T12:42:07.413429+00:00",
+  "base_url": "https://brasilapi.com.br/api",
+  "order": [
+    "eleicoes",
+    "cnpj",
+    "fipe",
+    "fundos_cvm"
+  ],
+  "stages": {
+    "eleicoes": {
+      "started_at": "2026-09-28T12:42:07.413442+00:00",
+      "status": "failed",
+      "attempts": 6,
+      "fetched": 0,
+      "cached": 0,
+      "failed": 2,
+      "limitations": [
+        "Election detail traversal blocked: no TSE municipality/election scopes available."
+      ],
+      "scope": "catalogs_and_supplied_electoral_units",
+      "finished_at": "2026-09-28T12:42:14.559118+00:00",
+      "exported_responses": 0
+    },
+    "cnpj": {
+      "started_at": "2026-09-28T12:42:14.559774+00:00",
+      "status": "blocked",
+      "attempts": 0,
+      "fetched": 0,
+      "cached": 0,
+      "failed": 0,
+      "limitations": [
+        "CNPJ lookup blocked: no input/discovered CNPJs; no identifiers guessed."
+      ],
+      "scope": "frozen_seed_set_only",
+      "seed_count": 0,
+      "seed_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "finished_at": "2026-09-28T12:42:14.559982+00:00",
+      "exported_responses": 0
+    },
+    "fipe": {
+      "started_at": "2026-09-28T12:42:14.560378+00:00",
+      "status": "failed",
+      "attempts": 3,
+      "fetched": 0,
+      "cached": 0,
+      "failed": 1,
+      "limitations": [],
+      "scope": "all_reference_tables",
+      "finished_at": "2026-09-28T12:42:18.630192+00:00",
+      "exported_responses": 0
+    },
+    "fundos_cvm": {
+      "started_at": "2026-09-28T12:42:18.630957+00:00",
+      "status": "failed",
+      "attempts": 3,
+      "fetched": 0,
+      "cached": 0,
+      "failed": 1,
+      "limitations": [
+        "Pagination blocked at page 1; subsequent pages not guessed."
+      ],
+      "scope": "all_pages_and_unique_fund_details",
+      "pagination_exhausted": false,
+      "finished_at": "2026-09-28T12:42:22.698408+00:00",
+      "exported_responses": 0
+    }
+  },
+  "settings": {
+    "base_url": "https://brasilapi.com.br/api",
+    "fipe_tables": "all",
+    "delay": 1.0,
+    "timeout": 30.0,
+    "retries": 2,
+    "max_retry_after": 120.0,
+    "failure_limit": 5,
+    "max_requests": 0,
+    "page_size": 200,
+    "max_response_bytes": 16777216,
+    "max_data_bytes": 100663296,
+    "export_max_bytes": 50331648
+  },
+  "limitations": [
+    "CNPJ is seed-bounded; BrasilAPI has no CNPJ enumeration endpoint.",
+    "Election detail coverage requires TSE municipalities/scopes; IBGE codes are not substituted.",
+    "CVM-discovered CNPJs are deferred; no CNPJ requests occur after the CNPJ stage.",
+    "Resume reuses successful responses. Use a new --state for a fresh collection.",
+    "Responses collected at different times are not a transactional snapshot.",
+    "FIPE upstream fallback may ignore historical reference tables; verify mesReferencia."
+  ],
+  "inputs": {
+    "election_scopes": [],
+    "tse_municipalities": []
+  },
+  "cnpj_seeds": {},
+  "deferred_cnpj_count": 0,
+  "finished_at": "2026-09-28T12:42:22.698868+00:00",
+  "status": "incomplete",
+  "error_export": {
+    "path": "errors.jsonl",
+    "events": 12,
+    "truncated": false
+  },
+  "exports": [],
+  "deferred_cnpj_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+}
